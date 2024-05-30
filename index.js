@@ -1,5 +1,5 @@
 // npm init -y   --> package.json --> "type": "module"
-//npm i express, nodemon, mongoose, dotenv, bcryptjs
+//npm i express, nodemon, mongoose, dotenv, bcryptjs, jsonwebtoken
 
 import express from 'express';
 import mongoose from 'mongoose'
