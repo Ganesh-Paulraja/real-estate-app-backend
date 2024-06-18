@@ -1,5 +1,7 @@
 // npm init -y   --> package.json --> "type": "module"
-//npm i express, nodemon, mongoose, dotenv, bcryptjs, jsonwebtoken
+//npm i express, nodemon, dotenv, ---\ mongoose,  bcryptjs, jsonwebtoken
+// "start": "node index.js",
+// "dev": "nodemon index.js"
 
 import express from 'express';
 import mongoose from 'mongoose'
@@ -37,3 +39,11 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
+
+//test
+
+// app.get('/test', (req, res) => {
+//   // res.send('hello world')
+//   res.json({message: "open"})
+// })

@@ -5,13 +5,14 @@ import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
-  const hashedPassword = bcryptjs.hashSync(password, 10)  //<--this nomber going to merge with bcrypt for randomising
+  const hashedPassword = bcryptjs.hashSync(password, 10)  //<--this nomber going to merge with bcrypt for randomising, hashSync come with waiting default 
   const newUser = new User({username, email, password: hashedPassword}); //<-- we are changeing the value of this particular key others comes with default value
   try {
     await newUser.save();
     res.status(201).json("user created successfully")
   } catch (error) {
     next(error);
+    // res.status(500).json(error.message);
     // next(errorHandler(550, 'error form the fucntion'))
   }
 }
