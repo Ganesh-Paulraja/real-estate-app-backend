@@ -30,12 +30,12 @@ app.use('/api/auth', authRouter);
 
 //middleware
 app.use((err, req, res, next) => {
-  // if we have same variable of key name inside functino key will automatically upadate (ES6 future)
+  
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
   return res.status(statusCode).json({
     success: false,
-    statusCode,
+    statusCode,// if we have same variable of key name inside functino key will automatically upadate (ES6 future)
     message,
   });
 });
