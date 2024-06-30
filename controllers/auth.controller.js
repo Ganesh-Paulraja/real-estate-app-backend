@@ -19,7 +19,6 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
   const {email, password} = req.body;
-  console.log(password)
   try {
     const validUser = await User.findOne({ email }) //{email: eamil} --> ES6
     if (!validUser) return next(errorHandler(404, 'User not found'));
@@ -45,7 +44,6 @@ export const  google = async (req, res, next) => {
         .cookie('access_token', token, {httpOnly: true})
         .status(200)
         .json(rest);
-        console.log('done')
     } else {
       const generatePassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
       const hashedPassword = bcryptjs.hashSync(generatePassword, 10)
@@ -57,7 +55,6 @@ export const  google = async (req, res, next) => {
       res.cookie('access_token', token, {httpOnly: true})
       .status(200)
       .json(rest);
-      console.log('2*')
     }
   } catch (error) {
     next(error)
