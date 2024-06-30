@@ -4,7 +4,7 @@ import { errorHandler } from "../utils/error.js";
 
 export const test = (req, res) => {
   res.json({
-    massage: 'Hello World 2',
+    massage: 'Hello World 2 =' + req.params.id,
   })
 }
 
@@ -36,5 +36,23 @@ export const updateUserInfo = async (req, res, next) => {
     }
   } else {
     return next(errorHandler(401, 'You can only update your own account'))
+  }
+};
+
+
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      return next(errorHandler(401, 'You can only delete your own account!'));
+    }
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return next(errorHandler(404, 'User not found'));
+    }
+    res.clearCookie('access_token');
+    res.status(200).json({ message: 'User has been deleted' });
+  } catch (error) {
+    next(error);
   }
 };
