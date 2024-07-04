@@ -69,3 +69,4 @@ export const getUserListing = async (req, res, next) => {
     next(error)
   }
 }
+
